@@ -56,7 +56,7 @@ const LoginPage = () => {
                 Already have an account ?
                 <Link className=' font-semibold text-[#63c34e]' href="/login">Login</Link>
             </div>
-            <button className='border border-transparent my-3 mt-5 p-[8px_20px] rounded bg-[#37681d] hover:bg-transparent hover:border-white focus:bg-transparent focus:border-white transition' >Sign Up</button>
+            <button className='border my-3 mt-5 p-[8px_20px] bg-transparent text-white border-white rounded hover:bg-[#63c34e] hover:text-black hover:border-transparent focus:border-transparent focus:bg-[#63c34e] focus:text-black transition' >Sign Up</button>
         </form>
 
 
