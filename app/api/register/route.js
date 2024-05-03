@@ -41,7 +41,6 @@ export const POST = async (req, res) => {
         })
 
     } catch (error) {
-        console.log("Error inside register api call ", error)
         return NextResponse.json({message: error.message}, {status: 500})
     }
 } 
