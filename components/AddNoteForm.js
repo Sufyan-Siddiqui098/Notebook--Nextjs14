@@ -1,14 +1,29 @@
 "use client";
 import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
+import { toast } from "react-toastify";
+import { addNote } from "@/app/lib/utils";
 
 const AddNoteForm = () => {
   const [note, setNote] = useState({
     title: "",
     description: "",
   });
+
+  const onSubmitHanlder = async (e)=>{
+    e.preventDefault();
+    try {
+      const response = await addNote(note);
+      if(response.success){
+        toast.success(response.message)
+        window.location.reload();
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
   return (
-    <form className=" text-white resize-y gap-1 p-2 flex flex-col rounded h-auto shadow-sm bg-[#121212] w-[270px] max-w-[600px]  [&>*]:bordernone [&>*]:placeholder:font-medium [&>*]:outline-none [&>*]:bg-inherit  sm:w-[500px] sm:py-4 sm:px-3">
+    <form onSubmit={onSubmitHanlder} className=" text-white resize-y gap-1 p-2 flex flex-col rounded h-auto shadow-sm bg-[#121212] w-[270px] max-w-[600px]  [&>*]:bordernone [&>*]:placeholder:font-medium [&>*]:outline-none [&>*]:bg-inherit  sm:w-[500px] sm:py-4 sm:px-3">
       <input
         value={note.title}
         onChange={(e) => setNote({ ...note, title: e.target.value })}
@@ -27,7 +42,7 @@ const AddNoteForm = () => {
       <SubmitButton
         text={"Add"}
         className={
-          "!bg-[#468a37] rounded sm:w-max !px-4 !py-1 border border-transparent !text-white  hover:!bg-[#366b2a]"
+          "!bg-[#468a37] rounded sm:w-max !px-4 !py-1 !border-transparent !text-white hover:!border-white focus:!border-white  hover:!bg-[#366b2a] focus:!bg-[#366b2a]"
         }
       />
     </form>
