@@ -23,7 +23,7 @@ export const POST = async (req, res) => {
 
         //Create token data
         const tokenData = {
-            id: user._id,
+            _id: user._id,
             firstname: user.firstname,
             lastname: user.lastname,
             username: user.username,
@@ -31,15 +31,14 @@ export const POST = async (req, res) => {
         }
 
         //Create token
-        const token = await jwt.sign(tokenData, process.env.JWT_SECRET_KEY,{expiresIn: '1d'})
+        const token =  jwt.sign(tokenData, process.env.JWT_SECRET_KEY,{expiresIn: '1d'})
 
         //Crate response 
         const response = NextResponse.json({
             message: "Login Successfully",
             success: true,
-            // token
         })
-        // set the cookies 
+        // set the cookies - It can be access on the backend as well by (req.cookies.get) method
         response.cookies.set("token", token, {
             httpOnly: true
         })
