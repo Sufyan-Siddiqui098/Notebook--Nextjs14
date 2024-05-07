@@ -103,7 +103,7 @@ const LoginPage = () => {
             className="rounded w-full py-[12px] px-2 text-base placeholder:text-slate-500"
             type="text"
             required
-            placeholder="Pet name or favourit color"
+            placeholder="Forget Password Key"
           />
         </div>
 
