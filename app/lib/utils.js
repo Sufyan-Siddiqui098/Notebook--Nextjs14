@@ -18,3 +18,12 @@ export const addNote = async (note)=>{
         throw new Error( error.response? error.response.data.message : error.message)
     }
 }
+
+export const updateNote = async (note) =>{
+    try {
+        const {data} = await axios.post('/api/update-note', note);
+        return data;
+    } catch(error){
+        throw new Error( error.response? error.response.data.message : error.message)
+    }
+}
