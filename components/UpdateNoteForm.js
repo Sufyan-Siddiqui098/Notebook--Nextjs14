@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
+import { updateNote } from "@/app/lib/utils";
 
-const UpdateNoteForm = ({ note, onClose }) => {
+const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
   const [formData, setFormData] = useState({
     title: note.title || "", // Set default title if no note provided
     description: note.description || "", // Set default description if no note provided
@@ -14,10 +15,16 @@ const UpdateNoteForm = ({ note, onClose }) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    // Handle form submission logic here (update note using API call)
-    console.log("Submitted form:", formData); // For demonstration purposes
-    onClose(); // Close the modal after submission (potentially after success)
+    try{
+      event.preventDefault();
+      const response = await updateNote(formData);
+      if(response.success){
+        updateNoteOnFrontend(response.message);
+      }
+      onClose(); // Close the modal after submission (potentially after success)
+    } catch(error){
+      console.log("Error while updating \n", error);
+    }
   };
 
   const cancel = (e) => {

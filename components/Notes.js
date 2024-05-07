@@ -2,15 +2,22 @@
 import { fetchAllNotes } from "@/app/lib/utils";
 import React, { useEffect, useState } from "react";
 import UpdateNoteForm from "./UpdateNoteForm";
+import { toast } from "react-toastify";
 
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   const [selectedNote, setSelectedNote] = useState(null);
+  
+  const fetchNotesOnFrontend = async(message)=>{
+    const reponse = await fetchAllNotes();
+    setNotes(reponse.notes)
+    if(message){
+      toast.success(message);
+    }
+  }
+
   useEffect(() => {
-    (async () => {
-      const response = await fetchAllNotes();
-      setNotes(response.notes);
-    })();
+    fetchNotesOnFrontend();
   }, []);
 
   const openModal = (note) => setSelectedNote(note);
@@ -39,7 +46,7 @@ const Notes = () => {
 
       {/* Modal */}
       {selectedNote && (
-        <UpdateNoteForm note={selectedNote} onClose={closeModal} />
+        <UpdateNoteForm updateNoteOnFrontend={fetchNotesOnFrontend} note={selectedNote} onClose={closeModal} />
       )}
     </div>
   );
