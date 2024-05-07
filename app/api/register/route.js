@@ -31,7 +31,7 @@ export const POST = async (req, res) => {
             resetkey
         })
 
-        //Create token data
+        //User saved in Db
         const savedUser = await newUser.save();
 
         return NextResponse.json({
