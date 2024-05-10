@@ -1,9 +1,11 @@
 
+import { connectToDatabase } from "@/app/lib/connectDatabase"
 import { NextRequest, NextResponse } from "next/server"
 
+connectToDatabase();
 export const GET =async (req, res) => {
     try { 
-        let response = await NextResponse.json({
+        let response = NextResponse.json({
             message: "Logout Successfully",
             success: true
         })
