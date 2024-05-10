@@ -2,6 +2,7 @@
 import { regisgerUser } from "@/app/lib/auth/auth";
 import SubmitButton from "@/components/SubmitButton";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -16,6 +17,7 @@ const LoginPage = () => {
   });
 
   const [pending, setPending] = useState(false);
+  const router = useRouter();
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
@@ -25,8 +27,7 @@ const LoginPage = () => {
       console.log("register handler response ", response);
       if (response.success) {
         toast.success(response.message);
-        // for now this is how we replace the location
-        window.location.replace("/login");
+        router.push("/login")
       }
     } catch (error) {
       toast.error(error.message);
