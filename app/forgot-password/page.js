@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { forgotPassword } from "../lib/auth/auth";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const ForgotPassword = () => {
   const [credentials, setCredentials] = useState({
@@ -12,6 +13,7 @@ const ForgotPassword = () => {
     newPassword: "",
   });
   const [pending, setPending] = useState(false);
+  const router = useRouter()
 
   const onSubmitHandler = async (e) => {
     try {
@@ -20,6 +22,7 @@ const ForgotPassword = () => {
       const response = await forgotPassword(credentials);
       if (response.success) {
         toast.success(response.message);
+        router.push("/login")
       }
     } catch (error) {
       toast.error(error.message);
