@@ -36,7 +36,7 @@ export const logoutUser = async () => {
 
 export const forgotPassword = async (credentials) => {
   try {
-    const { data } = await axios.post("/api/forget-password");
+    const { data } = await axios.post("/api/forget-password", credentials);
     return data;
   } catch (error) {
     throw new Error(
