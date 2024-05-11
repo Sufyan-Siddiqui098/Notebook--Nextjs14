@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import SubmitButton from "@/components/SubmitButton";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({
@@ -12,7 +13,7 @@ const LoginPage = () => {
   });
 
   const [pending, setPending] = useState(false);
-
+  const router = useRouter();
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -21,8 +22,9 @@ const LoginPage = () => {
       console.log("resp", response);
       if (response.success) {
         toast.success(response.message);
-        // for now this is how we replace the location
-        window.location.replace("/");
+        
+        router.push('/')
+        router.refresh() //refresh the page to activate middleware router protection
       }
     } catch (error) {
       toast.error(error.message);

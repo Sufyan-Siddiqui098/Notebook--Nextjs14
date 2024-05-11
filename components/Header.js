@@ -2,20 +2,22 @@
 import { logoutUser } from "@/app/lib/auth/auth";
 import { decodeToken } from "@/app/lib/decodeUser";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const Header = ({ token, firstname }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const logoutHandler = async () => {
     try {
       const response = await logoutUser();
       console.log("logout ", response);
       if (response.success) {
         toast.success(response.message);
-        // temporary way to redirect
-        window.location.replace("/login");
+
+        router.push("/login")
+        router.refresh();     //To run the middleware for route protection.
       }
     } catch (error) {
       console.log("logout error", error);
