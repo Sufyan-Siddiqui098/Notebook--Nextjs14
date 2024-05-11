@@ -44,3 +44,14 @@ export const forgotPassword = async (credentials) => {
     );
   }
 };
+
+export const fetchUserDetail = async () => {
+  try {
+    const { data } = await axios.get("/api/me");
+    return data;
+  } catch (error) {
+    throw new Error(
+      error.response ? error.response.data.message : error.message
+    );
+  }
+};
