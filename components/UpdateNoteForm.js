@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
-import { updateNote } from "@/app/lib/utils";
+import { updateNote } from "@/app/lib/api_calls.note";
 
 const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
   const [formData, setFormData] = useState({

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
 import { toast } from "react-toastify";
-import { addNote } from "@/app/lib/utils";
+import { addNote } from "@/app/lib/api_calls.note";
 
 const AddNoteForm = () => {
   const [note, setNote] = useState({

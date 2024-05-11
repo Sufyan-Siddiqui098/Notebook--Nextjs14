@@ -1,5 +1,5 @@
 "use client";
-import { fetchAllNotes } from "@/app/lib/utils";
+import { fetchAllNotes } from "@/app/lib/api_calls.note";
 import React, { useEffect, useState } from "react";
 import UpdateNoteForm from "./UpdateNoteForm";
 import { toast } from "react-toastify";
