@@ -11,7 +11,7 @@ export const GET = async (req, res) => {
             return NextResponse.json({ message: "Something Went Wrong, Please Login " }, { status: 401 });
         }
         const { _id } = decodeToken(token);
-        const user = await User.findById(_id).select("-password");
+        const user = await User.findById(_id).select("email firstname lastname -_id");
         if(!user){
             return NextResponse.json({message: "Invalid User id"}, {status: 404})
         }
