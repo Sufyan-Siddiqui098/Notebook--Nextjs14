@@ -19,7 +19,6 @@ const LoginPage = () => {
     try {
       setPending(true);
       const response = await loginUser(credentials);
-      console.log("resp", response);
       if (response.success) {
         toast.success(response.message);
         
