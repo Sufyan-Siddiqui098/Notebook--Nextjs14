@@ -27,3 +27,12 @@ export const updateNote = async (note) =>{
         throw new Error( error.response? error.response.data.message : error.message)
     }
 }
+
+export const deleteNote = async(_id) =>{
+    try {
+        const {data} = await axios.post('/api/delete-note', {_id});
+        return data;
+    } catch(error){
+        throw new Error( error.response? error.response.data.message : error.message)
+    }
+}

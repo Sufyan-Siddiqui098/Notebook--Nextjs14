@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
-import { updateNote } from "@/app/lib/api_calls.note";
+import { deleteNote, updateNote } from "@/app/lib/api_calls.note";
 
 const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event) => {
+  const updateNoteHandler = async (event) => {
     try{
       event.preventDefault();
       const response = await updateNote(formData);
@@ -23,9 +23,22 @@ const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
       }
       onClose(); // Close the modal after submission (potentially after success)
     } catch(error){
-      console.log("Error while updating \n", error);
+      console.log("Error while Updating Note \n", error);
     }
   };
+  
+  const deleteNoteHandler = async (event) => {
+    try{
+      event.preventDefault();
+      const response = await deleteNote(formData._id);
+      if(response.success){
+        updateNoteOnFrontend(response.message);
+      }
+      onClose();
+    } catch (error){
+      console.log("Error while Delteing Note \n", error);
+    }
+  }
 
   const cancel = (e) => {
     if (e.target.classList.contains("fixed")) onClose();
@@ -40,7 +53,7 @@ const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
     >
       <div className="bg-[#121212]  rounded-lg p-4 max-w-[600px] sm:w-96 shadow-md">
         <h2 className="text-xl font-bold mb-4">Edit Note</h2>
-        <form onSubmit={handleSubmit}>
+        <form >
           <div className="mb-3">
             <label htmlFor="title" className="form-label tracking-wide">
               Title
@@ -69,7 +82,10 @@ const UpdateNoteForm = ({ note, onClose, updateNoteOnFrontend }) => {
               required
             />
           </div>
-          <SubmitButton text={"Update"} className={"py-1 text-sm mt-2"} />
+          <div className="flex gap-2">
+            <SubmitButton onClick={updateNoteHandler} text={"Update"} className={"py-1 text-sm mt-2"} />
+            <SubmitButton onClick={deleteNoteHandler} text={"Delete"} className={"py-1 text-sm mt-2 !bg-red-500 !border-transparent focus:!bg-transparent focus:!border-red-500 focus:!text-red-500 hover:!bg-transparent hover:!border-red-500 hover:!text-red-500"} />
+          </div>
         </form>
       </div>
     </div>
