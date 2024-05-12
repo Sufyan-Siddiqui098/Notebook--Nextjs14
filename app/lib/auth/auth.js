@@ -55,3 +55,14 @@ export const fetchUserDetail = async () => {
     );
   }
 };
+
+export const updateUserProfile = async (credentials) => {
+  try {
+    const { data } = await axios.post("/api/update-user-profile", credentials);
+    return data;
+  } catch (error) {
+    throw new Error(
+      error.response ? error.response.data.message : error.message
+    );
+  }
+};
