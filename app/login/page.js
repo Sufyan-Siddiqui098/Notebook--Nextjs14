@@ -65,7 +65,7 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center text-sm gap-[2px] sm:gap-1 mt-3 px-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center text-sm gap-[2px] sm:gap-1 mt-5 px-2">
           <Link className="hover:underline mr-1" href="/forgot-password">
             Forgot Your Password ?
           </Link>
@@ -74,7 +74,7 @@ const LoginPage = () => {
           </Link>
         </div>
 
-        <SubmitButton text={"login"} pending={pending} />
+        <SubmitButton text={"login"} pending={pending}/>
       </form>
     </div>
   );

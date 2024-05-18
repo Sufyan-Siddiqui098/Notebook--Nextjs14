@@ -108,7 +108,7 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center text-sm gap-[2px] sm:gap-1 mt-3 px-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center text-sm gap-[2px] sm:gap-1 mt-5 px-2">
           Already have an account ?
           <Link className=" font-semibold text-[#63c34e]" href="/login">
             Login
