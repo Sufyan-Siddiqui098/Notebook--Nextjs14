@@ -108,14 +108,14 @@ const LoginPage = () => {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center text-sm gap-[2px] sm:gap-1 mt-5 px-2">
+        <SubmitButton text={"Sign Up"} pending={pending} />
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center text-sm gap-[2px] sm:gap-1 -mt-1 px-2">
           Already have an account ?
           <Link className=" font-semibold text-[#63c34e]" href="/login">
             Login
           </Link>
         </div>
-        
-        <SubmitButton text={"Sign Up"} pending={pending} />
       </form>
     </div>
   );
