@@ -14,6 +14,7 @@ const Header = ({ token, firstname }) => {
       const response = await logoutUser();
       console.log("logout ", response);
       if (response.success) {
+        setIsMenuClick(false);
         toast.success(response.message);
 
         router.push("/login")
